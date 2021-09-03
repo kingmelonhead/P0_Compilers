@@ -11,6 +11,10 @@ struct Node {
     Node* right;
 };
 
+void insertNode() {
+
+}
+
 void buildTree(int mode){
     if (mode == 0){
         //build tree using keyboard input
