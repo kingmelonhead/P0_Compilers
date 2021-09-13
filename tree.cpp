@@ -17,29 +17,48 @@ struct Node {
     vector<string> elements; // list of strings starting with the key
 };
 
+void printError() {
+    cout << "ERROR: Too many arguments provided...\n exiting program now\n\n";
+    exit(0);
+}
+
 void insertNode(string element) {
 
 }
 
-void buildTree(int mode, string fileName, string buffer){
-    string local_buffer = buffer;
+void buildTree(int mode, string fileName){
+    string buffer = "";
     if (mode == 0){
-        //program is invoked using "P0"
-        cout << "Tree is being built stdin\n\n";
-        cout << "Buffer being used: " << local_buffer << endl;
-    }
-    else {
-        //program is invoked using "P0 < somefile"
+        //program is invoked using "./P0 somefile"
         cout << "Tree is being built by reading from somefile\n\n";
-
-        //attempt to open the file passed as arg
 
         //if it cant open then display an error and exit
 
         //if it can open the file then red from the file into the local_buffer variable
+
+    }
+    else if (mode == 1){
+        rewind(stdin);
+        for (string line; cin >> line;) {
+            string temp = line;
+            transform(temp.begin(), temp.end(), temp.begin(), ::tolower);
+            if (temp != "eof") buffer += (line + ' ');
+            else break;
+        }
+    }
+    else {
+        cout << "Enter the strings that will be inserted into the bst. Enter 'eof' when finished\n";
+        for (string line; cin >> line;) {
+            string temp = line;
+            transform(temp.begin(), temp.end(), temp.begin(), ::tolower);
+            if (temp != "eof") buffer += (line + ' ');
+            else break;
+        }
     }
 
-    //build the tree using the local_buffer var
+    cout << "buffer being used is:\n" << buffer << endl;
+
+    //build the tree using the buffer var
 
 }
 void printInorder(){
