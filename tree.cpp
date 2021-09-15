@@ -5,7 +5,7 @@ Prof:       Hauschild
 Date:       9/15/2021
 */
 #include "tree.hpp"
-#include "node.h"
+#include "node.hpp"
 #include <iostream>
 #include <vector>
 #include <string>
