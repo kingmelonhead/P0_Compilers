@@ -1,4 +1,11 @@
+/*
+Name:       John Hackstadt
+Assignmnet: P0
+Prof:       Hauschild
+Date:       9/15/2021
+*/
 #include "tree.hpp"
+#include "node.h"
 #include <iostream>
 #include <vector>
 #include <string>
@@ -10,12 +17,7 @@ using namespace std;
 
 int nodeCount; 
  
-struct Node {
-    char key; // this will be the first character of the strings, aka what the tree sorty by
-    Node* left;
-    Node* right;
-    vector<string> elements; // list of strings starting with the key
-};
+
 
 void printError() {
     cout << "ERROR: Too many arguments provided...\n exiting program now\n\n";
