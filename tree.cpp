@@ -16,6 +16,8 @@ Date:       9/15/2021
 
 using namespace std;
 
+Node* root_ptr;
+
 string get_next_substring(string buffer, int &start_index){
     string temp;
     int count = 0;
@@ -121,6 +123,8 @@ void buildTree(int mode, string fileName){
     temp_word = get_next_substring(buffer, index);
     struct Node* root = new Node(temp_word[0]);
     root->elements.emplace_back(temp_word);
+
+    root_ptr = root;
 
     //make tree
     for (int i = 1; i < word_count; i++) {
