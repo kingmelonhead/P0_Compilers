@@ -1,0 +1,50 @@
+Name:           John Hackstadt
+Date:           09 - 16 - 2021
+Class:          Program Translation Techniques (Compilers)
+Professor:      Mark Hauschild
+School:         University of Missouri St. Louis
+Assignment:     P0 (Project 0)
+Language:       C++
+
+Goal: Write a program that can take in strings as input and sort them into a bst. From there, the program will print the contents of the bst
+to separate output files, one per traversal method (in-order, pre-order, post-order).
+
+Possible sources of input:
+    - User input through keyboard
+    - Input redirection through stdin
+    - Strings read from a file
+
+Technicalities: The professor said that the program does not have to take special charcters into thought. In other words it is assumed that 
+the input from any of the methods above is to be strictly alpha-numeric. There is nothing in place to handle special characters.
+
+How to build (Mac OS X or Linux CLI):
+    make
+
+How to cleanup files when done with program:
+    make clean
+
+How to invoke:
+    ./P0 [filename] 
+        This method with optional file name will either take keyboard input or read from "filename"
+    
+    ./P0 < somefile
+        This method will redirect stdin to to context of "somefile" and will take the strings there as input
+
+Outside sources:
+    No code was used from outside sources. I wrote it all on my own. 
+
+Known issues:
+    Asside from the program not handling special characters there has been nothing I have noticed so far.
+
+Other notes:
+    Anything "//cout << ..." lines are just debug lines I have commented out but decided to leave in to show the process I went 
+    through building this program, and so I can easily uncomment them if I need to use them again for whatever reason.
+
+Changes from prompt:
+    default file name is just "default_filename.inOrder" not "xxx.inOrder", so on so forth for the rest of the outfiles.
+
+
+
+
+
+

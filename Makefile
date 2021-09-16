@@ -6,5 +6,5 @@ P0: main.cpp tree.cpp tree.hpp node.hpp
 	$(CC) -o $@ $^ $(CFLAGS) 
 
 clean:
-	rm P0 
+	rm P0 *.inorder *.preorder *.postorder
 	rm -r *.dSYM
