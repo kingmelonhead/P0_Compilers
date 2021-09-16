@@ -7,3 +7,4 @@ P0: main.cpp tree.cpp tree.hpp node.hpp
 
 clean:
 	rm P0 
+	rm -r *.dSYM
