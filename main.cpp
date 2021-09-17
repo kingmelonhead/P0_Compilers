@@ -17,23 +17,23 @@ int main(int argc, char** argv){
     if (argc == 2) filename = argv[1];
     else filename = "default_filename";
 
+    if (argc > 2) printError();  
+
     //create out files
     ofstream in_order_out (filename + ".inorder", ios::out);
     ofstream pre_order_out (filename + ".preorder", ios::out);
     ofstream post_order_out (filename + ".postorder", ios::out);
 
-    //build trees
-    if (argc > 2) printError();                                        // Too many arguments given
-    else if (argc == 2) root_ptr = buildTree(0, argv[1]);              // ./P0 somefile            
-    else root_ptr = buildTree(1);                                      // ./P0  & ./P0 < somefile
+    //build trees                                      
+    if (argc == 2) root_ptr = buildTree(0, argv[1]);        // ./P0 somefile            
+    else root_ptr = buildTree(1);                           // ./P0  & ./P0 < somefile
 
     //pass ofstream and ptr to tree root to print methods
-    printInorder(in_order_out, root_ptr);
-    cout << "In-order traversal has been output to " << filename << ".inorder\n";
-    printPreorder(pre_order_out, root_ptr);
-    cout << "In-order traversal has been output to " << filename << ".preorder\n";
-    printPostorder(post_order_out, root_ptr);
-    cout << "In-order traversal has been output to " << filename << ".postorder\n";
+    if (root_ptr != NULL){
+        printInorder(in_order_out, root_ptr);
+        printPreorder(pre_order_out, root_ptr);
+        printPostorder(post_order_out, root_ptr);
+    }
 
     //clode ofstreams
     in_order_out.close();

@@ -8,44 +8,18 @@ Date:       9/15/2021
 
 using namespace std;
 
-string get_next_substring(string buffer, int &start_index){
-    string temp;
-    int count = 0;
-    if (buffer[start_index] == SPACE) {
-        cout << "Something with the start variable went wrong, exiting program...\n";
-        exit (0);
-    } 
-    while (1){
-        if (buffer[start_index + count] == SPACE){
-            temp = buffer.substr(start_index, count++);
-            start_index = start_index + count;
-            break;
-        }
-        else count++;
-    };
-    return temp;
-}
-
-
 void printError() {
     cout << "ERROR: Too many arguments provided...\n exiting program now\n\n";
     exit(0);
 }
 
 void insertNode(string element, Node* root) {
+    if (!isalnum(element[0]) || element == "") return;
     char this_key  = element[0];
     //check to see if this is the appropriate node
     if (this_key == root->key){
         //it is the appropriate node, so see if the element already exists
-        if(std::find(root->elements.begin(), root->elements.end(), element) != root->elements.end()) {
-            //is in vector, so do nothing
-            //cout << element << " already exists in a node with key " << root->key << endl;
-        } 
-        else {
-            //not in vector, so add the element to the node
-            root->elements.emplace_back(element);
-            //cout << "putting " << element << " into vector in node with key " << root->key << endl;
-        }       
+        if(std::find(root->elements.begin(), root->elements.end(), element) == root->elements.end()) root->elements.emplace_back(element); //not in vector, so add the element to the node    
     }
     else {
         //this is not the appropriate node
@@ -54,132 +28,95 @@ void insertNode(string element, Node* root) {
             if (root->left == NULL){
                 //if left doesnt exist
                 root->left = new Node(this_key);
-                //cout << "Node being created to the left of " << root->key << " with the key " << this_key << " and " << element << " is being inserted"<< endl;
                 root->left->elements.emplace_back(element);
             }
-            else {
-                //left does exist
-                insertNode(element, root->left);
-                //cout << element << " is attempting to be put into the left node (key = " << root->left->key << ") with key of " << this_key << endl;
-            }
+            else insertNode(element, root->left); //left does exist
         }
         else {
             //the word needs to go to the right node
             if (root->right == NULL){
                 //right doesnt exist
                 root->right = new Node(this_key);
-                //cout << "Node being created to the right of " << root->key << " with the key " << this_key << " and " << element << " is being inserted"<< endl;
                 root->right->elements.emplace_back(element);
             }
-            else {
-                //right does exist
-                insertNode(element, root->right);
-                //cout << element << " is attempting to be put into the right node (key = " << root->right->key << ") with key of " << this_key << endl;
-            }
+            else insertNode(element, root->right); //right does exist
         }
     }
 }
 
 Node* buildTree(int mode, string fileName){
-    Node* root_ptr;
     ifstream in_file;
-    string word, temp_word, temp = "", buffer = "";
+    string word;
+    struct Node* root;
     int index = 0, word_count = 0;
     if (mode == 0){
-        //program is invoked using "./P0 somefile"
-
+        //program was invoked using ./P0 somefile
         in_file.open(fileName, ios::in);
-
         if (in_file.is_open()){
             while (in_file >> word){
-                buffer += word + ' ';
-                word_count++;
+                if (word_count == 0){
+                    //make root
+                    root = new Node(word[0]);
+                    root->elements.emplace_back(word);
+                    word_count++;
+                }
+                else insertNode(word, root);
             }
         }
         else {
             cout << "The specified file does not exist, exiting...\n"; 
-            exit (0);
+            return NULL;
         }
     }
     else {
-        cout << "Enter the strings that will be inserted into the bst. Press ENTER, then ctrl + D when done\n";
+        //program was invoked using either ./P0 or ./P0 < somefile
         for (string line; cin >> line;) {
-            buffer += line + ' ';
-            word_count++;
+            if (word_count == 0){
+                //make root
+                root = new Node(line[0]);
+                root->elements.emplace_back(line);
+                word_count++;
+            }
+            else insertNode(line, root);
         }
     }
-
-    cout << "The string being used is:" << buffer << "\n";
-
     //if no input was found then exit
-    if (buffer == ""){
+    if (word_count == 0){
         cout << "no input was given, exiting program...\n";
-        exit(0);
+        return NULL;
     }
-
-    //make root
-    temp_word = get_next_substring(buffer, index);
-    struct Node* root = new Node(temp_word[0]);
-    root->elements.emplace_back(temp_word);
-
-    root_ptr = root;
-
-    //make tree
-    for (int i = 1; i < word_count; i++) {
-        temp_word = get_next_substring(buffer, index);
-        insertNode(temp_word, root);
-    }
-    return root_ptr;
-
+    return root;
 }
-void printInorder(ofstream &outFile, Node* node){
-    //cout << "Tree in order:\n";
 
+void printInorder(ofstream &outFile, Node* node){
     //if node is null return 
     if (node == NULL) return;
- 
     //left tree
     printInorder(outFile, node->left);
- 
     //print vector
     for (int i = 0; i < node->elements.size(); i++) outFile << node->elements.at(i) << " ";
- 
     //right tree
     printInorder(outFile, node->right);
-
-    //cout << endl;
 }
-void printPreorder(ofstream &outFile, Node* node){
-    //cout << "Tree pre order:\n";
 
+void printPreorder(ofstream &outFile, Node* node){
     //if node is null return
     if (node == NULL) return;
- 
     //print vector
     for (int i = 0; i < node->elements.size(); i++) outFile << node->elements.at(i) << " ";
- 
     //left tree 
     printPreorder(outFile, node->left);
- 
     //right tree
     printPreorder(outFile, node->right);
-
-    //cout << endl;
 }
-void printPostorder(ofstream &outFile, Node* node){
-    //cout << "Tree post order:\n";
 
+void printPostorder(ofstream &outFile, Node* node){
     //if node is null return
     if (node == NULL) return;
- 
     // left tree 
     printPostorder(outFile, node->left);
- 
     // right tree
     printPostorder(outFile, node->right);
- 
     //print vector
     for (int i = 0; i < node->elements.size(); i++) outFile << node->elements.at(i) << " ";
-
-    //cout << endl;
 }

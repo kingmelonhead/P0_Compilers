@@ -35,10 +35,12 @@ Outside sources:
 
 Known issues:
     Asside from the program not handling special characters there has been nothing I have noticed so far.
+    Update: strings starting with special charaters should just be ignored
 
 Other notes:
     Anything "//cout << ..." lines are just debug lines I have commented out but decided to leave in to show the process I went 
     through building this program, and so I can easily uncomment them if I need to use them again for whatever reason.
+    Update: I removed the debug lines
 
 Changes from prompt:
     default file name is just "default_filename.inOrder" not "xxx.inOrder", so on so forth for the rest of the outfiles.
