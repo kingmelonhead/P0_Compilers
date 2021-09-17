@@ -1,9 +1,3 @@
-/*
-Name:       John Hackstadt
-Assignmnet: P0
-Prof:       Hauschild
-Date:       9/15/2021
-*/
 #include <vector>
 #include <string>
 struct Node {

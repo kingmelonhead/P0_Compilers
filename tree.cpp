@@ -109,7 +109,7 @@ Node* buildTree(int mode, string fileName){
         }
     }
 
-    cout << "The buffer being used is:" << buffer << ":\n";
+    cout << "The string being used is:" << buffer << "\n";
 
     //if no input was found then exit
     if (buffer == ""){

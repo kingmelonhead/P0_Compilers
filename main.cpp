@@ -29,8 +29,11 @@ int main(int argc, char** argv){
 
     //pass ofstream and ptr to tree root to print methods
     printInorder(in_order_out, root_ptr);
+    cout << "In-order traversal has been output to " << filename << ".inorder\n";
     printPreorder(pre_order_out, root_ptr);
+    cout << "In-order traversal has been output to " << filename << ".preorder\n";
     printPostorder(post_order_out, root_ptr);
+    cout << "In-order traversal has been output to " << filename << ".postorder\n";
 
     //clode ofstreams
     in_order_out.close();
