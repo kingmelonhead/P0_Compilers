@@ -44,6 +44,7 @@ Other notes:
 
 Changes from prompt:
     default file name is just "default_filename.inOrder" not "xxx.inOrder", so on so forth for the rest of the outfiles.
+    Update: I missed in the prompt where it says the default filename can just be "output.etc" etc being the traversal mode that corresponds with teh file
 
 
 

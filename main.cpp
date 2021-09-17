@@ -15,7 +15,7 @@ int main(int argc, char** argv){
     //determine if user provided name is used or program created name
     string filename;
     if (argc == 2) filename = argv[1];
-    else filename = "default_filename";
+    else filename = "output";
 
     if (argc > 2) printError();  
 
@@ -30,9 +30,9 @@ int main(int argc, char** argv){
 
     //pass ofstream and ptr to tree root to print methods
     if (root_ptr != NULL){
-        printInorder(in_order_out, root_ptr);
-        printPreorder(pre_order_out, root_ptr);
-        printPostorder(post_order_out, root_ptr);
+        printInorder(in_order_out, root_ptr, 0);
+        printPreorder(pre_order_out, root_ptr, 0);
+        printPostorder(post_order_out, root_ptr, 0);
     }
 
     //clode ofstreams

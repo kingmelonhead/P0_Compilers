@@ -15,8 +15,8 @@ Date:       9/15/2021
 #include <fstream>
 #include "node.hpp"
 Node* buildTree(int, std::string = "");
-void printInorder(std::ofstream&, Node* = NULL);
-void printPreorder(std::ofstream&, Node* = NULL);
-void printPostorder(std::ofstream&, Node* = NULL);
+void printInorder(std::ofstream&, Node* = NULL, int = 0);
+void printPreorder(std::ofstream&, Node* = NULL, int = 0);
+void printPostorder(std::ofstream&, Node* = NULL, int = 0);
 void insertNode(std::string, Node*);
 void printError();

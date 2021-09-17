@@ -88,35 +88,59 @@ Node* buildTree(int mode, string fileName){
     return root;
 }
 
-void printInorder(ofstream &outFile, Node* node){
+void printInorder(ofstream &outFile, Node* node, int level){
     //if node is null return 
     if (node == NULL) return;
     //left tree
-    printInorder(outFile, node->left);
+    printInorder(outFile, node->left, level + 1);
     //print vector
-    for (int i = 0; i < node->elements.size(); i++) outFile << node->elements.at(i) << " ";
+    for (int i = 0; i < node->elements.size(); i++) {
+        outFile << "level " << level << ": ";
+        for (int i = 0; i <= level; i++){
+            outFile << "\t";
+        }
+        outFile << node->elements.at(i) << " ";
+        outFile << endl;
+    } 
+    outFile << endl;
     //right tree
-    printInorder(outFile, node->right);
+    printInorder(outFile, node->right, level + 1);
 }
 
-void printPreorder(ofstream &outFile, Node* node){
+void printPreorder(ofstream &outFile, Node* node, int level){
     //if node is null return
     if (node == NULL) return;
     //print vector
-    for (int i = 0; i < node->elements.size(); i++) outFile << node->elements.at(i) << " ";
+    for (int i = 0; i < node->elements.size(); i++) {
+        outFile << "level " << level << ": ";
+        for (int i = 0; i <= level; i++){
+            outFile << "\t";
+        }
+        outFile << node->elements.at(i) << " ";
+        outFile << endl;
+    } 
+    outFile << endl;
     //left tree 
-    printPreorder(outFile, node->left);
+    printPreorder(outFile, node->left, level + 1);
     //right tree
-    printPreorder(outFile, node->right);
+    printPreorder(outFile, node->right, level + 1);
 }
 
-void printPostorder(ofstream &outFile, Node* node){
+void printPostorder(ofstream &outFile, Node* node, int level){
     //if node is null return
     if (node == NULL) return;
     // left tree 
-    printPostorder(outFile, node->left);
+    printPostorder(outFile, node->left, level + 1);
     // right tree
-    printPostorder(outFile, node->right);
+    printPostorder(outFile, node->right, level + 1);
     //print vector
-    for (int i = 0; i < node->elements.size(); i++) outFile << node->elements.at(i) << " ";
+    for (int i = 0; i < node->elements.size(); i++) {
+        outFile << "level " << level << ": ";
+        for (int i = 0; i <= level; i++){
+            outFile << "\t";
+        }
+        outFile << node->elements.at(i) << " ";
+        outFile << endl;
+    } 
+    outFile << endl;
 }
