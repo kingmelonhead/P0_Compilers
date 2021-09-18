@@ -20,3 +20,4 @@ void printPreorder(std::ofstream&, Node* = NULL, int = 0);
 void printPostorder(std::ofstream&, Node* = NULL, int = 0);
 void insertNode(std::string, Node*);
 void printError();
+void deleteTree(Node*);

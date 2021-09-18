@@ -13,6 +13,14 @@ void printError() {
     exit(0);
 }
 
+void deleteTree(Node* node){
+    if (node == NULL) return;
+    deleteTree(node->left);
+    deleteTree(node->right);
+    delete node;
+    node = NULL;
+}
+
 void insertNode(string element, Node* root) {
     if (!isalnum(element[0]) || element == "") return;
     char this_key  = element[0];

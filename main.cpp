@@ -35,6 +35,8 @@ int main(int argc, char** argv){
         printPostorder(post_order_out, root_ptr, 0);
     }
 
+    deleteTree(root_ptr);
+
     //clode ofstreams
     in_order_out.close();
     pre_order_out.close();
