@@ -14,11 +14,11 @@ void printError() {
 }
 
 void deleteTree(Node* node){
-    if (node == NULL) return;
-    deleteTree(node->left);
-    deleteTree(node->right);
-    delete node;
-    node = NULL;
+    if (node == NULL) return; // node already null? then return 
+    deleteTree(node->left); // kill the left subtree
+    deleteTree(node->right); // kill the right subtree
+    delete node; // after all of left and right subtree are deleted then delete current node
+    node = NULL; // set current node to NULL to avoid hypothetical accidents
 }
 
 void insertNode(string element, Node* root) {

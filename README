@@ -31,7 +31,8 @@ How to invoke:
         This method will redirect stdin to to context of "somefile" and will take the strings there as input
 
 Outside sources:
-    No code was used from outside sources. I wrote it all on my own. 
+    No code was used from outside sources. I wrote it all on my own. However, some may look similar to the bst tutorial featured on geeksforgeeks.org because that is where I (and probably many other students) learned
+    how to implement C++ BSTs
 
 Known issues:
     Asside from the program not handling special characters there has been nothing I have noticed so far.
